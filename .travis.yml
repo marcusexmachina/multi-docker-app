@@ -1,0 +1,21 @@
+sudo: required
+services:
+  - dockerfile
+
+before_install:
+  - docker build -t marcus-react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true marcus-react-test npm test
+
+after_success:
+  - docker build -t marcus-multi-client ./client
+  - docker build -t marcus-multi-nginx ./nginx
+  - docker build -t marcus-multi-server ./server
+  - docker build -t marcus-multi-worker ./worker
+
+  - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push marcus-multi-client
+  - docker push marcus-multi-nginx
+  - docker push marcus-multi-server
+  - docker push marcus-multi-worker
