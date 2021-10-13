@@ -13,8 +13,6 @@ after_success:
   - docker build -t marcus-multi-nginx ./nginx
   - docker build -t marcus-multi-server ./server
   - docker build -t marcus-multi-worker ./worker
-
-  
   - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push marcus-multi-client
   - docker push marcus-multi-nginx
