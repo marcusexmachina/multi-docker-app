@@ -9,14 +9,14 @@ script:
   - docker run -e CI=true marcus-react-test npm test
 
 after_success:
-  - docker build -t marcus-multi-client ./client
-  - docker build -t marcus-multi-nginx ./nginx
-  - docker build -t marcus-multi-server ./server
-  - docker build -t marcus-multi-worker ./worker
+  - docker build -t marcusmortera/multi-client ./client
+  - docker build -t marcusmortera/multi-nginx ./nginx
+  - docker build -t marcusmortera/multi-server ./server
+  - docker build -t marcusmortera/multi-worker ./worker
 
   - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
 
-  - docker push marcusmortera/marcus-multi-client
-  - docker push marcusmortera/marcus-multi-nginx
-  - docker push marcusmortera/marcus-multi-server
-  - docker push marcusmortera/marcus-multi-worker
+  - docker push marcusmortera/multi-client
+  - docker push marcusmortera/multi-nginx
+  - docker push marcusmortera/multi-server
+  - docker push marcusmortera/multi-worker
