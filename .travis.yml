@@ -16,7 +16,7 @@ after_success:
 
   - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
 
-  - docker push marcus-multi-client
-  - docker push marcus-multi-nginx
-  - docker push marcus-multi-server
-  - docker push marcus-multi-worker
+  - docker push marcusmortera/marcus-multi-client
+  - docker push marcusmortera/marcus-multi-nginx
+  - docker push marcusmortera/marcus-multi-server
+  - docker push marcusmortera/marcus-multi-worker
